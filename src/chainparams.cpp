@@ -101,11 +101,11 @@ public:
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 4-byte int at any alignment.
          */
-        pchMessageStart[0] = 0xbd;
-        pchMessageStart[1] = 0xd5;
-        pchMessageStart[2] = 0x5b;
-        pchMessageStart[3] = 0x59;
-        vAlertPubKey = ParseHex("04265483a5a257d7aaf51493b1e4bf54d7a311bb9df7aeec78a4b05eadcc1b485a49ec5aad2ca0b2019e1f4c5a22bb8260c7d54f289a94d9ac87983264fc0d7dfc");
+        pchMessageStart[0] = 0xad;
+        pchMessageStart[1] = 0xa5;
+        pchMessageStart[2] = 0x6b;
+        pchMessageStart[3] = 0x69;
+        vAlertPubKey = ParseHex("04f8ef0cb6cdc1da10d73690005f4bfab2dcffb81bc5de8d27da10da2c6d4ab1a81558892ce7244ba642a90894ba4bd661409f6431c42dcf9fa9eb2c2c450f314b");
         nDefaultPort = 9883;
         bnProofOfWorkLimit = ~uint256(0) >> 8;
         nSubsidyHalvingInterval = 210000;
@@ -127,26 +127,27 @@ public:
         txNew.vout.resize(1);
         txNew.vin[0].scriptSig = CScript() << 486604799 << CScriptNum(4) << vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
         txNew.vout[0].nValue = 50 * COIN;
-        txNew.vout[0].scriptPubKey = CScript() << ParseHex("045d132cdf745d63376eff2f377f056ab5ca61bd08255600506b8f3554c6ba231bfc865cf356272f5d0b2e0851f9ae8ffe8938e731b7d5dbe07631a23759c420e2") << OP_CHECKSIG;
+        txNew.vout[0].scriptPubKey = CScript() << ParseHex("042afc6d78ec20e5c6f77af79f802e908b0bdb0f2cdaf7e3d129dcc0e10a70f68f8e6cb6bcbdd6ea2931fb722f1f39be47005d17f031788b9eb652c875b195df24") << OP_CHECKSIG;
         genesis.vtx.push_back(txNew);
         genesis.hashPrevBlock = 0;
         genesis.hashMerkleRoot = genesis.BuildMerkleTree();
         genesis.nVersion = 1;
-        genesis.nTime    = 1518612461;
+        genesis.nTime    = 1550309875;
         genesis.nBits    = 0x2000ffff;
-        genesis.nNonce   = 7;
+        genesis.nNonce   = 410;
+
 
         hashGenesisBlock = genesis.GetHash();
-        assert(hashGenesisBlock == uint256("0x002e98fae78162485995472464ae4295999f10e05b18b6a3e9f1bfff647220f9"));
-        assert(genesis.hashMerkleRoot == uint256("0x89d866ccba8cffdcb1d3b53dc05625bf6b845e288aea7aba76fa1989970e5d9f"));
+        assert(hashGenesisBlock == uint256("0x000e95d1e8959098cfafba9b4db3fe4ec98e7eb18c30dd14840bac1673fe204f"));
+        assert(genesis.hashMerkleRoot == uint256("0xc3bbb18634caf9ccdf31409034aca72a72b0279e0fd27183c87b45ca9d05105f"));
 
         vSeeds.push_back(CDNSSeedData("ns.meowmeowcoin.com", "seeds.meowmeowcoin.com"));
 
-        base58Prefixes[PUBKEY_ADDRESS] = list_of(182);
-        base58Prefixes[SCRIPT_ADDRESS] = list_of(66);
-        base58Prefixes[SECRET_KEY] =     list_of(222);
-        base58Prefixes[EXT_PUBLIC_KEY] = list_of(0x04)(0x88)(0xA3)(0xC3);
-        base58Prefixes[EXT_SECRET_KEY] = list_of(0x04)(0x88)(0x8B)(0x16);
+        base58Prefixes[PUBKEY_ADDRESS] = list_of(112);
+        base58Prefixes[SCRIPT_ADDRESS] = list_of(56);
+        base58Prefixes[SECRET_KEY] =     list_of(224);
+        base58Prefixes[EXT_PUBLIC_KEY] = list_of(0x04)(0x88)(0xA4)(0xC4);
+        base58Prefixes[EXT_SECRET_KEY] = list_of(0x04)(0x88)(0xB4)(0xD4);
 
         convertSeed6(vFixedSeeds, pnSeed6_main, ARRAYLEN(pnSeed6_main));
 
@@ -175,11 +176,11 @@ public:
     CTestNetParams() {
         networkID = CBaseChainParams::TESTNET;
         strNetworkID = "test";
-        pchMessageStart[0] = 0x45;
-        pchMessageStart[1] = 0xc2;
-        pchMessageStart[2] = 0x46;
-        pchMessageStart[3] = 0xc5;
-        vAlertPubKey = ParseHex("04f5199723b12237f39c738949b6ce38fc11c2d469dd8181717f590af6a0c94a540764da7dcc6fd5f26046b39079a63a627a5f0633b5c87807979487f7b50d0a9d");
+        pchMessageStart[0] = 0xb5;
+        pchMessageStart[1] = 0xb2;
+        pchMessageStart[2] = 0x76;
+        pchMessageStart[3] = 0x75;
+        vAlertPubKey = ParseHex("0409c18f47356ed1b996e72c587821a5a23ae58b83c032c3d67342627f471c6c2803953b37416a249adac43b5771ae913eae1351a33f82748ed33b696a81e48fbe");
         nDefaultPort = 19883;
         nEnforceBlockUpgradeMajority = 51;
         nRejectBlockOutdatedMajority = 75;
@@ -190,11 +191,12 @@ public:
         nMaxTipAge = 0x7fffffff;
 
         //! Modify the testnet genesis block so the timestamp is valid for a later start.
-        genesis.nTime = 1518608373;
-        genesis.nNonce = 548;
+        genesis.nTime = 1550309874;
+        genesis.nNonce = 270;
+
 
         hashGenesisBlock = genesis.GetHash();
-        assert(hashGenesisBlock == uint256("0x000c9646947b1ea1cd3c33df8aeb38b19d840f2eb7ceb88da856770714c99c17"));
+        assert(hashGenesisBlock == uint256("0x00f8d49159357b49a753c8aa97b21c9f67a88963a926daaac8e12e1dbd2c309c"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -203,11 +205,11 @@ public:
         //vSeeds.push_back(CDNSSeedData("bluematt.me", "testnet-seed.bluematt.me"));
         //vSeeds.push_back(CDNSSeedData("bitcoin.schildbach.de", "testnet-seed.bitcoin.schildbach.de"));
 
-        base58Prefixes[PUBKEY_ADDRESS] = list_of(240);
-        base58Prefixes[SCRIPT_ADDRESS] = list_of(280);
-        base58Prefixes[SECRET_KEY]     = list_of(41);
-        base58Prefixes[EXT_PUBLIC_KEY] = list_of(0x04)(0x35)(0x90)(0xF2);
-        base58Prefixes[EXT_SECRET_KEY] = list_of(0x04)(0x35)(0x0E)(0x4E);
+        base58Prefixes[PUBKEY_ADDRESS] = list_of(110);
+        base58Prefixes[SCRIPT_ADDRESS] = list_of(55);
+        base58Prefixes[SECRET_KEY]     = list_of(220);
+        base58Prefixes[EXT_PUBLIC_KEY] = list_of(0x04)(0x35)(0xA4)(0xC4);
+        base58Prefixes[EXT_SECRET_KEY] = list_of(0x04)(0x35)(0xB4)(0xD4);
 
         convertSeed6(vFixedSeeds, pnSeed6_test, ARRAYLEN(pnSeed6_test));
 
@@ -234,10 +236,10 @@ public:
     CRegTestParams() {
         networkID = CBaseChainParams::REGTEST;
         strNetworkID = "regtest";
-        pchMessageStart[0] = 0x04;
-        pchMessageStart[1] = 0x2a;
-        pchMessageStart[2] = 0xf7;
-        pchMessageStart[3] = 0xc1;
+        pchMessageStart[0] = 0xc4;
+        pchMessageStart[1] = 0xca;
+        pchMessageStart[2] = 0x87;
+        pchMessageStart[3] = 0x81;
         nSubsidyHalvingInterval = 150;
         nEnforceBlockUpgradeMajority = 750;
         nRejectBlockOutdatedMajority = 950;
@@ -247,14 +249,14 @@ public:
         nTargetSpacing = 10 * 60;
         bnProofOfWorkLimit = ~uint256(0) >> 1;
         nMaxTipAge = 24 * 60 * 60;
-        genesis.nTime = 1518343777;
+        genesis.nTime = 1550309873;
         genesis.nBits = 0x207fffff;
-        genesis.nNonce = 5;
+        genesis.nNonce = 0;
 
 
         hashGenesisBlock = genesis.GetHash();
         nDefaultPort = 18444;
-        assert(hashGenesisBlock == uint256("0x268c43be09de6fe7712cd25c219d29282f6e3e5f33f5e1a8b1bee1a131e39fbb"));
+        assert(hashGenesisBlock == uint256("0x49027e937a3d6a2c9cffe0d0e4d5d30a230e53544df04f394047d1d08ab10b61"));
 
         vFixedSeeds.clear(); //! Regtest mode doesn't have any fixed seeds.
         vSeeds.clear();  //! Regtest mode doesn't have any DNS seeds.
